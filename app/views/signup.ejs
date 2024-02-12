@@ -1,0 +1,23 @@
+<body>
+  <div id="body">
+
+     <%- include('partials/header') %>
+     
+     <div class="container">
+        <main>
+           <form class="forms" action ="/signUp" method="POST">
+              <p class="bienvenue">Bienvenue</p>
+              <input type="pseudo" name="pseudo" placeholder="Pseudo" class="input" required/><br />
+              <input type="email" name="email" placeholder="Email" class="input" required/><br />
+              <input type="password" name="password" placeholder="Password" class="input" required/><br />
+              <button type="submit" value="Connexion" class="connect"> Créer un compte</button><br /> 
+              <a href="/login">Vous possedez déja un compte ? Connectez-vous</a>
+              <!--<a href="#" id="forgot">Mot de passe oublié</a-->
+           </form>
+        </main>
+     </div>
+     
+     <%- include('partials/footer') %>
+
+  </div>
+</body>

@@ -1,0 +1,38 @@
+<body>
+    <div id="body">
+
+        <%- include('partials/header') %>
+        
+        <div class="container">
+            <main>
+                <div id="cityResults">
+
+                    <div id="searchZone">
+                        <form action="/" method="POST">
+
+
+							<input
+								type="text"
+								id="maRecherche"
+								placeholder="Rechercher une ville..."
+								size="20"
+								name="city"
+							/>
+
+                            <input type="submit" value="Rechercher" text="usertext" class="buttonSearch"></input>
+<br>
+<br>
+
+<%- include('partials/results') %>
+          </form>
+                    </div>
+
+
+                    
+            </main>
+        </div>
+        
+        <%- include('partials/footer') %>
+
+    </div>
+</body>

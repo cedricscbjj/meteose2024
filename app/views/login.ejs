@@ -1,0 +1,24 @@
+<body>
+  <div id="body">
+
+      <%- include('partials/header') %>
+
+      <div class="container">
+          <main>
+              <form class="forms" method="POST" action="/login">
+                  <p class="bienvenue">Connectez-vous</p>
+                      <input type="text" placeholder="Pseudo" name="pseudo"  required/>
+                      <input type="text" placeholder="Mot de passe" name="password" required/>
+                      <!-- <form action="/myAccount" method="post" class="input"> -->
+                      <!-- METTRE UN BUTTON COMME POUR SIGNUP.EJS -->
+                      <button type="submit" value="Connexion" class="connect"> Se connecter</button><br /> 
+                      <!-- <a href="/profil" class="buttonConnexion">Se connecter  </a> --> 
+                      <a href="/signUp">Créer un compte</a>
+              </form>
+          </main>
+      </div>
+
+      <%- include('partials/footer') %>
+
+  </div>
+</body>

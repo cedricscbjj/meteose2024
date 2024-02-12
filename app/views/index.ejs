@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Météose</title>
+	</head>
+	<body>
+		<div id="body">
+
+			<%- include('partials/header') %>
+			
+					<main>
+						<div id="searchZone">
+              <form action="/" method="POST">
+
+
+							<input
+								type="text"
+								id="maRecherche"
+								placeholder="Rechercher une ville..."
+								size="20"
+								name="city"
+							/>
+
+              <input type="submit" value="Rechercher" text="usertext" class="buttonSearch"></input>
+
+            <div class="results">
+              <% if(temp !== null)  {%>
+                <h1 class="temp"><%= temp %></h1>
+              <% } %>
+        
+              <div class="icon-des">
+                
+                <% if(des !== null)  {%>
+                  <h3><%= des %></h3>
+                <% } %>
+              </div>
+        
+              <% if(city !== null)  {%>
+                <p class="city"><%= city %></p>
+              <% } %>
+
+            <!--	<a href="/cityResults.ejs" class="buttonSearch">Rechercher</a>-->
+							<!--<input class="favorite styled" type="button" value="Rechercher">-->
+						</div>
+          </form>
+
+					</main>
+					
+			<%- include('partials/footer') %>
+
+		</div>
+	</body>
+</html>
