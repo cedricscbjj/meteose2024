@@ -1,4 +1,6 @@
-// init de Express et du router
+
+
+
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
@@ -6,7 +8,7 @@ require('dotenv').config()
 
 const mainController = require('./controllers/mainController');
 
-
+router.use(express.json());
 
 router.get('/', mainController.homePage);
 router.get('/login', mainController.getLoginPage);
@@ -15,8 +17,8 @@ router.get('/cityResults', mainController.getCityresultpage);
 router.get('/aboutUs', mainController.getaboutus);
 router.get('/cgu', mainController.getcgu);
 router.get('/faq', mainController.getfaq);
-
-
+router.post('/signup', mainController.postSignup); // Handle POST requests for signup form
+router.post('/login', mainController.postLogin);
 /*router.get('/', (req, res) => {
   res.render('home', {
     city: null,
