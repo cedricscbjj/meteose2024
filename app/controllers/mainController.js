@@ -68,15 +68,35 @@ const mainController = {
         res.render("signup", {})
     },
 
-    // Réception d’un email et un password et vérification du match en base de données, connexion du user en session si match
     tryToLogin: async (req, res, next) => {
+    const { pseudo, password } = req.body;
 
+    try {
+        // Check if the user exists in the database
+        const user = await User.findOne({ pseudo });
 
-        console.log("Le controller trytologin est déclenché ")
+        if (!user) {
+            // User not found
+            console.log("User not found");
+            return res.render('login', { error: 'Invalid credentials' });
+        }
 
-// le user est connecté la page devra etre renommé home.ejs comme sur le cahier des charges
-        res.render("home", {})
-    },
+        // Check if the entered password matches the stored hashed password
+        if (user.password === password) {
+            // Passwords match, user is authenticated
+            console.log("User authenticated");
+            // You may want to set up a session or generate a token for the user here
+            return res.render('cityResults', { user });
+        } else {
+            // Incorrect password
+            console.log("Incorrect password");
+            return res.render('login', { error: 'Invalid credentials' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+},
 
 
     getaboutus: async (req, res, next) => {
@@ -146,13 +166,7 @@ const mainController = {
       },
 
 
-      postLogin: async (req, res, next) => {
-        const { pseudo, password } = req.body;
-    
-        console.log("Données envoyées", { pseudo, password });
-
-       
-      },
+      
 
 
 
