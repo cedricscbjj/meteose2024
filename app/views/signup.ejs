@@ -19,5 +19,53 @@
      
      <%- include('partials/footer') %>
 
-  </div>
+</div>
+
+
+
+ <script>
+   document.getElementById('submitBtn').addEventListener('click', submitForm);
+
+async function submitForm() {
+  const form = document.getElementById('signupForm');
+  const formData = {
+    pseudo: form.querySelector('[name="pseudo"]').value,
+    email: form.querySelector('[name="email"]').value,
+    password: form.querySelector('[name="password"]').value,
+  };
+
+  try {
+    const response = await fetch('/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      console.log('User information successfully submitted' );
+      document.querySelector(".bienvenue").innerHTML = " Compte crée avec succes !";
+
+
+    } else {
+      console.error('Failed to submit user information');
+
+    }
+  } catch (error) {
+    console.error('An error occurred:', error);
+    // Gérer l'erreur ici
+  }
+}
+ </script>
+
+
+
+
+
+
+
+
+
+
 </body>
