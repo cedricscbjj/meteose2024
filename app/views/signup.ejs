@@ -24,14 +24,35 @@
 
 
  <script>
-   document.getElementById('submitBtn').addEventListener('click', submitForm);
+document.getElementById('submitBtn').addEventListener('click', submitForm);
 
 async function submitForm() {
   const form = document.getElementById('signupForm');
+  const pseudo = form.querySelector('[name="pseudo"]').value;
+  const email = form.querySelector('[name="email"]').value;
+  const password = form.querySelector('[name="password"]').value;
+  
+
+  // Vérifier les caractères spéciaux dans le pseudo
+  if (!isValidInput(pseudo)) {
+    console.error('Invalid characters in pseudo');
+    return;
+  }
+
+  // Vérifier les caractères spéciaux dans l'e-mail
+  if (!isValidEmail(email)) {
+    console.error('Invalid characters in email');
+    return;
+  }
+
+
+
+
+  // Déplacer la déclaration de formData ici
   const formData = {
-    pseudo: form.querySelector('[name="pseudo"]').value,
-    email: form.querySelector('[name="email"]').value,
-    password: form.querySelector('[name="password"]').value,
+    pseudo: pseudo,
+    email: email,
+    password: password,
   };
 
   try {
@@ -44,19 +65,28 @@ async function submitForm() {
     });
 
     if (response.ok) {
-      console.log('User information successfully submitted' );
-      document.querySelector(".bienvenue").innerHTML = " Compte crée avec succes !";
-
-
+      console.log('User information successfully submitted');
+      document.querySelector(".bienvenue").innerHTML = "Compte créé avec succès!";
     } else {
       console.error('Failed to submit user information');
-
     }
   } catch (error) {
     console.error('An error occurred:', error);
     // Gérer l'erreur ici
   }
 }
+
+// Les fonctions isValidInput et isValidEmail restent inchangées
+function isValidInput(input) {
+  const regex = /^[a-zA-Z0-9_-]+$/;
+  return regex.test(input);
+}
+
+function isValidEmail(email) {
+  const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  return regex.test(email);
+}
+
  </script>
 
 
