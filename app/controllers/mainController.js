@@ -5,7 +5,8 @@
 const router = require('express').Router();
 const fetch = require('node-fetch');
 
-const User = require('../models/user');       
+const User = require('../models/user');       //schema mongo db
+const bcrypt = require('bcrypt');
 
 
 const mainController = {
@@ -13,7 +14,7 @@ const mainController = {
     homePage: async (req, res, next) => {
 
 
-        console.log("ca marche!!")
+        console.log("vous etes sur la page d accueil")
 
 
         res.render('index', {
@@ -49,7 +50,7 @@ const mainController = {
     getLoginPage: async (req, res, next) => {
 
 
-        console.log("Le controller login est déclenché a titre indicatif")
+        console.log("vous etes sur la page de login")
 
 
         res.render("login", {})
@@ -62,41 +63,38 @@ const mainController = {
     getSignupPage: async (req, res, next) => {
 
 
-        console.log("Le controller getsignup  est déclenché ")
+        console.log("Lvous etes sur la page d enregistrement ")
 
 
         res.render("signup", {})
     },
 
-    tryToLogin: async (req, res, next) => {
-    const { pseudo, password } = req.body;
-
-    try {
-        // Check if the user exists in the database
-        const user = await User.findOne({ pseudo });
-
-        if (!user) {
-            // User not found
-            console.log("User not found");
-            return res.render('login', { error: 'Invalid credentials' });
+    // Réception d’un email et un password et vérification du match en base de données, connexion du user en session si match
+    // mainController.js
+    tryToLogin: async (req, res) => {
+        const { pseudo, password } = req.body;
+    
+        try {
+          // Recherche de l'utilisateur dans la base de données par pseudo
+          const user = await User.findOne({ pseudo });
+    
+          // Vérification de l'existence de l'utilisateur et comparaison du mot de passe haché
+          if (user && bcrypt.compareSync(password, user.password)) {
+            // Connexion réussie, définir l'ID de l'utilisateur dans la session
+            req.session.userId = user._id;
+    
+            // Redirection vers la page souhaitée (par exemple, la page secretpage)
+            res.redirect('/pagesecrete');
+          } else {
+            // Échec de la connexion, rediriger vers la page de connexion avec un message d'erreur
+            res.render('login', { error: 'Identifiants incorrects' });
+          }
+        } catch (error) {
+          console.error(error);
+          res.render('login', { error: 'Erreur lors de la connexion' });
         }
+      },
 
-        // Check if the entered password matches the stored hashed password
-        if (user.password === password) {
-            // Passwords match, user is authenticated
-            console.log("User authenticated");
-            // You may want to set up a session or generate a token for the user here
-            return res.render('cityResults', { user });
-        } else {
-            // Incorrect password
-            console.log("Incorrect password");
-            return res.render('login', { error: 'Invalid credentials' });
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Internal Server Error');
-    }
-},
 
 
     getaboutus: async (req, res, next) => {
@@ -127,6 +125,9 @@ const mainController = {
         res.render("faq", {})
     },
 
+    getSecretpage: async (req, res, next) => {
+        res.render('pagesecrete', { user: req.session.userId });
+      },
 
 
 
@@ -138,28 +139,32 @@ const mainController = {
 
 
 
-    postSignup: async (req, res, next) => {
+      postSignup: async (req, res, next) => {
         const { pseudo, email, password } = req.body;
     
         console.log("Données reçues du formulaire:", { pseudo, email, password });
-
-        // Save user data to MongoDB
+    
         try {
+
+
+          const hashedPassword = await bcrypt.hash(password, 10);
+    
+          // Enregistrez l'utilisateur dans la base de données avec le mot de passe haché
           const newUser = new User({
             pseudo,
             email,
-            password, // You should hash the password before saving it in a real-world scenario
+            password: hashedPassword,
           });
           await newUser.save();
           console.log("User information saved to MongoDB:", {
             pseudo,
             email,
-            password,
-        });
-          // Redirect or send a response indicating success
+            password: hashedPassword,
+          });
+          // Redirigez ou envoyez une réponse indiquant le succès
           res.redirect('/login');
         } catch (error) {
-          // Handle the error, e.g., render an error page
+          // Gérez l'erreur, par exemple, affichez une page d'erreur
           console.error(error);
           res.status(500).send('Internal Server Error');
         }
@@ -167,8 +172,6 @@ const mainController = {
 
 
       
-
-
 
 
 }
