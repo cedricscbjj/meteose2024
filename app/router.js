@@ -1,6 +1,6 @@
 
 
-
+// init de Express et du router
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
@@ -15,10 +15,19 @@ router.get('/login', mainController.getLoginPage);
 router.get('/signup', mainController.getSignupPage);
 router.get('/cityResults', mainController.getCityresultpage);
 router.get('/aboutUs', mainController.getaboutus);
-router.get('/cgu', mainController.getcgu);
 router.get('/faq', mainController.getfaq);
-router.post('/signup', mainController.postSignup); // Handle POST requests for signup form
-router.post('/login', mainController.postLogin);
+router.get('/pagesecrete', mainController.getSecretpage);
+router.get('/nasa', mainController.getNasapage);
+router.get('/index2', mainController.getindex2page);
+router.get('/forbidden', mainController.getforbiddenpage);
+
+router.get('/logout', mainController.getLogout);
+
+router.post('/signup', mainController.postSignup); 
+router.post('/login', mainController.tryToLogin);
+
+
+
 /*router.get('/', (req, res) => {
   res.render('home', {
     city: null,
@@ -55,6 +64,8 @@ router.post('/', async (req, res) => {
       });
 
   } catch (err) {
+    console.error("Error fetching weather data:", err);
+
     res.render('cityResults', {
       city: 'Ville inconnu au bataillon!',
       des: null,
@@ -63,5 +74,9 @@ router.post('/', async (req, res) => {
   }
 
 })
+
+
+
+
 
 module.exports = router;
