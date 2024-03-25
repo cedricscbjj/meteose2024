@@ -1,7 +1,3 @@
-
-
-
-
 const router = require('express').Router();
 const fetch = require('node-fetch');
 
@@ -82,11 +78,12 @@ const mainController = {
           if (user && bcrypt.compareSync(password, user.password)) {
             // Connexion réussie, définir l'ID de l'utilisateur dans la session
             req.session.userId = user._id;
+            req.session.userName = user.pseudo;
     
             // Redirection vers la page souhaitée (par exemple, la page secretpage)
             res.redirect('/pagesecrete');
           } else {
-            // Échec de la connexion, rediriger vers la page de connexion avec un message d'erreur
+            
             res.render('login', { error: 'Identifiants incorrects' });
           }
         } catch (error) {
@@ -107,14 +104,7 @@ const mainController = {
     },
 
 
-    getcgu: async (req, res, next) => {
 
-
-        console.log("Le controller aboutus  est déclenché ")
-
-
-        res.render("cgu", {})
-    },
 
     getfaq: async (req, res, next) => {
 
@@ -126,15 +116,50 @@ const mainController = {
     },
 
     getSecretpage: async (req, res, next) => {
-        res.render('pagesecrete', { user: req.session.userId });
+       if (req.session.userId) {res.render('pagesecrete', { userId: req.session.userId, userName: req.session.userName }); }
+       else { res.render('forbidden'); }
+      },
+
+
+
+      getNasapage: async (req, res, next) => {
+        if (req.session.userId) {res.render('nasa', { userId: req.session.userId, userName: req.session.userName }); }
+        else { res.render('forbidden'); }
       },
 
 
 
 
 
+      getindex2page: async (req, res, next) => {
+        if (req.session.userId) {res.render('index2', { userId: req.session.userId, userName: req.session.userName }); }
+        else { res.render('forbidden'); }
+      },
 
 
+      getforbiddenpage: async (req, res, next) => {
+        res.render('forbidden', { 
+
+        
+
+        });
+      },
+
+      getLogout: async (req, res, next) => {
+        req.session.userId = null;
+        req.session.userName = null;
+        res.render('login'); 
+      },
+
+
+      postLogout: async (req, res, next) => {
+        req.session.userId = null;
+        req.session.userName = null;
+        res.render('index'); 
+      },
+
+
+      
 
 
 
