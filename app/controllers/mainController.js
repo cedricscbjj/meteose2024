@@ -115,6 +115,26 @@ const mainController = {
         res.render("faq", {})
     },
 
+
+    
+    getprofilpage: async (req, res, next) => {
+
+      try {
+        // Récupérer l'utilisateur connecté depuis la session ou tout autre mécanisme d'authentification
+        const userId = req.session.userId; // Supposons que vous stockez l'ID de l'utilisateur dans la session
+
+        // Récupérer les données de l'utilisateur depuis la base de données
+        const user = await User.findById(userId); // Supposons que vous avez une méthode findById dans votre modèle utilisateur
+
+        // Rendre la page de profil et passer les données utilisateur à la vue
+        res.render('profil', { user: user });
+    } catch (err) {
+        next(err);
+    }
+
+     
+  },
+
     getSecretpage: async (req, res, next) => {
        if (req.session.userId) {res.render('pagesecrete', { userId: req.session.userId, userName: req.session.userName }); }
        else { res.render('forbidden'); }
