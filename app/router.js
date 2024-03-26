@@ -20,7 +20,7 @@ router.get('/pagesecrete', mainController.getSecretpage);
 router.get('/nasa', mainController.getNasapage);
 router.get('/index2', mainController.getindex2page);
 router.get('/forbidden', mainController.getforbiddenpage);
-
+router.get('/profil', mainController.getprofilpage);
 router.get('/logout', mainController.getLogout);
 
 router.post('/signup', mainController.postSignup); 
