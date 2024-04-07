@@ -1,0 +1,103 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@900&display=swap');
+/* font-family: 'Noto Sans Display', sans-serif;  */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
+/*font-family: 'Open Sans', sans-serif;*/
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+/*font-family: 'Roboto', sans-serif;*/
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
+
+/*  font-family: "Caprasimo", serif;
+*/
+#nightSkyContainer {
+    position: fixed; /* ou absolute selon vos besoins */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1
+}
+
+.text-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: aqua;
+    text-align: center;
+    z-index: 999; /* Assure that text appears above the night sky */
+}
+
+
+
+header {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    padding: 10px;
+    height: 15%;
+}
+
+.headerRight {
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+}
+
+.headerButton {
+    background-color:#0eb7bd;
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50px;
+    opacity: 0.9;
+}
+
+.headerButton:hover{
+    background-color: rgb(239, 239, 118);
+    transition: 650ms; 
+}
+
+.headerButton:active{
+    background-color: rgb(91, 161, 114);  
+}
+
+footer {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: large;
+    padding: 10px;
+    height: 5%;
+}
+
+
+.titre{
+    font-family: "Caprasimo", serif;
+    
+    font-size: 100px;
+    color:#0eb7bd;
+}
+
+
+.footertitle{
+    font-family: "Caprasimo", serif;
+font-size: xx-large;
+    color:#0eb7bd;
+
+
+
+}
