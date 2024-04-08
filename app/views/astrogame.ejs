@@ -32,26 +32,230 @@
         background-color="black">
     </night-sky>
 </div>
-
+<%- include('partials/header') %>
 <div class="text-container">
  
-  <%- include('partials/header') %>
 
   
 
-  
+  <div id="moongame">
+<h1>Pret a voyager sur la lune?</h1>
+<p>Savez vous a quel point la Lune est eloigné du soleil?</p>
+<br><br>
+<div id="question" >
+
+ 
+  <button class="button-64" role="button" onclick="letsgo()"><span class="text">Allons y!</span></button>
+
+</div>
+<br> <br>
+<button onclick="afficherDiv()" class="hidden">Afficher la div</button>
+
+<div id="maDiv" class="hidden">
+  <p id="message"> Nous allons voyager dans l'espace! c'est le moment de choisir votre bolide! tapez airbus pour visiter la lune en airbus ou faucon pour voyager a bord du faucon millenium. ENsuite appuyez sur le bouton pour vous "deplacez" dans l'espace. En fonction de votre vehicule vous atteindrez rapidement votre destination. Restez motivés!!!</p>
+  <p id="message2">Lets go!</p>
+  <input type="text" id="monInput" placeholder="Entrez votre choix">
+  <button id="button1" class="hidden" onclick="traveltothemoon()">En route!!!</button>
+  <button id="button2" class="hidden" onclick="traveltothemoon2()">Cliquez ici pour avancer dans le cosmos</button>
+</div>
+
+
+  </div>
   
 
-  <%- include('partials/footer') %>
 
 </div>
 
 
-    
 
     <script src="https://unpkg.com/@h0rn0chse/night-sky/dist/bundle.min.js"></script>
 
+<script>
 
+function letsgo(){
+
+var question = document.getElementById('question');
+question.classList.add('hidden');
+afficherDiv();
+}
+
+
+function afficherDiv() {
+  var div = document.getElementById('maDiv');
+  var input = document.getElementById('monInput');
+  var button1 = document.getElementById('button1');
+  var button2 = document.getElementById('button2');
+
+  div.classList.remove('hidden');
+
+  input.addEventListener('input', function() {
+    var choix = input.value.toLowerCase();
+
+    if (choix === 'airbus') {
+      button1.classList.remove('hidden');
+      button2.classList.add('hidden');
+      input.classList.add('hidden');
+    } else if (choix === 'faucon') {
+      button1.classList.add('hidden');
+      button2.classList.remove('hidden');
+      input.classList.add('hidden');
+    } else {
+      button1.classList.add('hidden');
+      button2.classList.add('hidden');
+      input.classList.remove('hidden');
+    }
+  });
+}
+
+
+
+////////////////////////////////////////////////////////////////////
+
+
+var count = 0;
+var vitesseairbus = 900;
+
+
+function traveltothemoon(){
+var message = document.getElementById("message");
+document.getElementById("message2"); 
+let miseajour ; 
+
+count += 1;
+vitesseairbus += 900
+message.innerHTML = "Vous avez voyagé pendant " + (count) + " heures" + " Ce qui revient a dire que vous avez parcouru " + vitesseairbus +" de kilometre au total";
+
+if (count > 427){
+miseajour =" C'est bon vous etes arrivé sur la Lune, vous avez voyager pendant environ 17 jours"
+}
+else if (count > 420) {
+miseajour = " Lors de votre prochain voyage prevoyez un vehicule plus rapide.... La Lune c'est la porte d'a coté à l'echelle de l'univers.";
+}
+else if (count > 390) {
+miseajour = " ca dort.....";
+}
+else if (count > 330) {
+miseajour = " Parce que si Mars est à 401 millions de kilometres....ca peut prendre 50ans....";
+}
+else if (count > 320) {
+miseajour = " Rejoindre Mars en 7 ans c'est valable uniquement si la planete est à 54,6 millions de kilometres";
+}
+
+else if (count > 310) {
+miseajour = " Avec une telle vitesse il vous faudrait environ 7ans pour rejoindre Mars... ";
+}
+else if (count > 250) {
+miseajour = " Vous avez fait la moitié du chemin ! Bravo!!! Continuez!!";
+}
+
+else if (count > 230) {
+miseajour = " Mars est à 54,6 millions de kilometres.... quand son orbite est proche de la terre... sinon c'est 225 millions de kilometres...";
+}
+
+
+else if (count > 210) {
+miseajour = " A l'echelle spatial 384000 kilometres c'est rien....Mars est à 54,6 millions de kilometres....";
+}
+
+else if (count > 190) {
+miseajour = " Faut se dire que la lune est a environ 384 400 kilomètres, pour atteindre la Lune il aurait fallu utiliser un vehicule bien plus rapide!!!!....";
+}
+
+else if (count > 140) {
+miseajour = " Ca fait presque 6 jours de voyage vous tenez bon??";
+}
+
+else if (count > 70) {
+miseajour = " ca fait quasiment 3 jours que vous voyagez j'espere que vous ne vous ennuyez pas.....";
+}
+
+else if (count > 50) {
+miseajour = " Partir de Paris vers le Kenya à l'echelle humaine c'est pas si problematique que ca... par contre pour aller sur la Lune c'est autre chose....";
+} else if (count > 25) {
+miseajour = "ca va pas assez vite??? vous avez fait le choix de partir avec un airbus... ";
+} else {
+miseajour = "attachez bien vos ceintures tout de meme";
+}
+document.getElementById("message2").innerHTML = miseajour;  
+
+
+console.log(vitesseairbus)
+
+
+}
+
+
+14000000000
+40208000000000
+
+////////////////////////////////////////////////////////////////////////
+var count2 = 0;
+var vitessefalcon = 1000000000;
+
+function traveltothemoon2(){
+var message = document.getElementById("message");
+document.getElementById("message2"); 
+let miseajour ; 
+
+count2 += 1;
+vitessefalcon += 1000000000
+
+message.innerHTML =  "Vous avez parcouru " + vitessefalcon +" de kilometres au total";
+
+if (count2 > 30){
+miseajour =" On apprecie votre tenacité......"
+}
+
+
+else if (count2 > 25 ) {
+miseajour = " Il vous faudrait plus de 2 millions d'années pour atteindre la galaxie d'Andromede.... vous etes immortelle?? ";
+} 
+
+
+
+
+else if (count2 > 19 ) {
+miseajour = " Il vous faudrait un peu plus de 26000ans pour atteindre le centre de la voie lactée.... ";
+} 
+
+
+
+else if (count2 > 16 ) {
+miseajour = " En gardant la vitesse constante de 1000000000km par heure vous ne pourriez meme pas atteindre le centre de la voie lactée... ";
+} 
+
+else if (count2 > 11 ) {
+miseajour = " 40208000000000 kilomètres c'est loin....";
+} 
+
+else if (count2 > 9 ) {
+miseajour = "Proxima du Centaure se trouve à environ 4,24 années lumieres.... c'est a dire environ 40208000000000 kilomètres ";
+} 
+
+
+else if (count2 > 7 ) {
+miseajour = "Malgré votre vitesse phenomenale il y'a toujours des astres qui resterons tres tres tres compliqué d'acces... ";
+} 
+
+else if (count2 > 7 ) {
+miseajour = "Vaut mieux utiliser les distances astronomiques ou années lumieres lorsque on se deplace a la vitesse de la lumiere. ";
+} 
+
+else if (count2 > 5) {
+miseajour = " A cette vitesse la pourquoi ne pas aller au dela du systeme solaire???";
+} else if (count2 > 1) {
+miseajour = "Vous avez depassé Saturne en moins de deux heures... Vous souhaitez aller sur Pluton? C'est possible en moins de 5 heures";
+} else {
+miseajour = "Vous avez raté la Lune en quelques secondes...vous voyagez a la vitesse de la lumiere!";
+}
+document.getElementById("message2").innerHTML = miseajour; 
+
+console.log(count2);
+}
+
+
+
+</script>
 
  
   </body>
