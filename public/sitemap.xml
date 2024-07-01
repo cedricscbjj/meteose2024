@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+ <!-- Page principale  -->
+    <url>
+        <loc>http://localhost:3017/</loc>
+        <lastmod>2024-06-04</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+ <!-- Page inscription d'un compte  -->
+
+
+<url>
+        <loc>http://localhost:3017/signup</loc>
+        <lastmod>2024-06-04</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+
+ <!-- Page pour se connecter   -->
+
+<url>
+        <loc>http://localhost:3017/login</loc>
+        <lastmod>2024-06-04</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+
+
+
+ <!-- Page 404  -->
+
+  <url>
+        <loc>http://localhost:3017/index2</loc>
+        <lastmod>2024-06-04</lastmod>
+        <changefreq>never</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+
+<!-- Page about us -->
+
+  <url>
+        <loc>http://localhost:3017/aboutUs</loc>
+        <lastmod>2024-06-04</lastmod>
+        <changefreq>never</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+
+
+<!-- Page faq  -->
+
+  <url>
+        <loc>http://localhost:3017/faq</loc>
+        <lastmod>2024-06-04</lastmod>
+        <changefreq>never</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+
+
+
+</urlset>
