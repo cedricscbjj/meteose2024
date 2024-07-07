@@ -3,14 +3,18 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		
+		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
+		<link rel="stylesheet" href="../css/reset.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		
+		<title>Météose</title>
 
 
 		<meta name="description" content="Obtenez en temps reel le temps qu'il fait dans le monde entier.  ">
 		<meta name="keywords" content="météo, prévisions météorologiques, astronomie, température, pluie, soleil, météo locale, image du jour">
-		<meta name="robots" content="index, follow">
+		<meta name="robots" content="index, follow"><!-- Balise POUR indiquer aux crawlers bots des moteurs de recherche pour indexer la page -->
 		<link rel="canonical" href="http://localhost:3017/">
 
 
@@ -26,18 +30,28 @@
  <meta name="twitter:description" content="Obtenez en temps reel le temps qu'il fait dans le monde entier.">
  <meta name="twitter:image" content="http://localhost:3017/"><!--mettre une image ici -->
 
-		<title>Météose</title>
+
+
+
 	</head>
 	<body>
 		<div id="body">
 
 			<%- include('partials/header') %>
 			
+			<p id="hello">    Hello <%= userName %>  Welcome Aboard!  </p>
+
 					<main>
+
+
+						
 						<div id="searchZone">
+
+
               <form action="/" method="POST">
+				<section aria-labelledby="zone-de-recherche">
 
-
+				
 							<input
 								type="text"
 								id="maRecherche"
@@ -47,32 +61,36 @@
 							/>
 
               <input type="submit" value="Rechercher" text="usertext" class="buttonSearch"></input>
+			</section>
 
-            <div class="results">
-              <% if(temp !== null)  {%>
-                <h1 class="temp"><%= temp %></h1>
-              <% } %>
-        
-              <div class="icon-des">
-                
-                <% if(des !== null)  {%>
-                  <h3><%= des %></h3>
-                <% } %>
-              </div>
-        
-              <% if(city !== null)  {%>
-                <p class="city"><%= city %></p>
-              <% } %>
-
-            <!--	<a href="/cityResults.ejs" class="buttonSearch">Rechercher</a>-->
-							<!--<input class="favorite styled" type="button" value="Rechercher">-->
-						</div>
+			<section aria-labelledby="zone-de-resultat">
+				<div class="results">
+					<% if(temp !== null) { %>
+						<h1 class="temp" role="status" aria-live="polite"><%= temp %></h1>
+					<% } %>
+					
+					<div class="icon-des">
+						<% if(des !== null) { %>
+							<h3 role="status" aria-live="polite"><%= des %></h3>
+						<% } %>
+					</div>
+					
+					<% if(city !== null) { %>
+						<p class="city" role="status" aria-live="polite"><%= city %></p>
+					<% } %>
+				</div>
+			</section>
           </form>
+
+
+
+
 
 					</main>
 					
-			<%- include('partials/footer') %>
+					<%- include('partials/footer') %>
 
 		</div>
+
 	</body>
 </html>
