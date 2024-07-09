@@ -5,16 +5,26 @@
      
      <div class="container">
         <main>
-           <form class="forms" action ="/signUp" method="POST">
-              <p class="bienvenue">Bienvenue</p>
-              <input type="pseudo" name="pseudo" placeholder="Pseudo" class="input" required/><br />
-              <input type="email" name="email" placeholder="Email" class="input" required/><br />
-              <input type="password" name="password" placeholder="Password" class="input" required/><br />
-              <button type="submit" value="Connexion" class="connect"> Créer un compte</button><br /> 
-              <a href="/login">Vous possedez déja un compte ? Connectez-vous</a>
-              <!--<a href="#" id="forgot">Mot de passe oublié</a-->
-           </form>
-        </main>
+          <form class="forms" id="signupForm" aria-labelledby="signupFormTitle">
+              <h1 class="bienvenue" id="signupFormTitle" >Inscription</h1>
+              <label for="pseudo">Pseudo</label>
+              <input type="text" name="pseudo" id="pseudo" placeholder="Pseudo" class="input" required aria-required="true"/><br />
+
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" placeholder="Email" class="input" required aria-required="true"/><br />
+
+              <label for="password">Mot de passe</label>
+              <input type="password" name="password" id="password" placeholder="Password" class="input" required aria-required="true"/><br />
+
+              <label>
+                  <input type="checkbox" id="privacyPolicy" required aria-required="true"/>
+                  J'accepte la <a href="/rgpd" target="_blank">politique de confidentialité</a>
+              </label><br />
+
+              <button type="button" id="submitBtn" aria-label="Créer un compte">Créer un compte</button><br /> 
+              <a href="/login">Vous possédez déjà un compte ? Connectez-vous</a>
+          </form>
+      </main>
      </div>
      
      <%- include('partials/footer') %>
