@@ -4,18 +4,30 @@
       <%- include('partials/header') %>
 
       <div class="container">
-          <main>
-              <form class="forms" method="POST" action="/login">
-                  <p class="bienvenue">Connectez-vous</p>
-                      <input type="text" placeholder="Pseudo" name="pseudo"  required/>
-                      <input type="text" placeholder="Mot de passe" name="password" required/>
-                      <!-- <form action="/myAccount" method="post" class="input"> -->
-                      <!-- METTRE UN BUTTON COMME POUR SIGNUP.EJS -->
-                      <button type="submit" value="Connexion" class="connect"> Se connecter</button><br /> 
-                      <!-- <a href="/profil" class="buttonConnexion">Se connecter  </a> --> 
-                      <a href="/signUp">Créer un compte</a>
-              </form>
-          </main>
+        <main>
+          <form class="forms" method="POST" action="/login" aria-labelledby="loginFormTitle">
+      
+              <% if (typeof error !== 'undefined') { %>
+                  <p style="color: red;" aria-live="assertive"><%= error %></p>
+              <% } %>
+      
+              <h1 class="bienvenue"  id="loginFormTitle" >Connectez-vous</h1>
+      
+              <label for="pseudo">Pseudo</label>
+              <input type="text" id="pseudo" name="pseudo" placeholder="Pseudo" required aria-required="true"/><br />
+      
+              <label for="password">Mot de passe</label>
+              <input type="password" id="password" name="password" placeholder="Mot de passe" required aria-required="true"/>
+              <div class="password-icon" aria-hidden="true">
+                  <i data-feather="eye"></i>
+                  <i data-feather="eye-off"></i>
+              </div><br />
+      
+              <button type="submit" value="Connexion" class="connect" id="yes" aria-label="Se connecter">Se connecter</button><br /> 
+              <a href="/signUp">Créer un compte</a>
+      
+          </form>
+      </main>
       </div>
 
       <%- include('partials/footer') %>
